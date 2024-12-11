@@ -9,10 +9,9 @@ class App {
   async run() {
     const product = await this.loadProduct();
     const promotion = await this.loadPromotion();
-    // console.log(product)
-    // console.log(promotion)
-    const calculatorManager = new ConvenienceStoreManager(product, promotion);
-    await calculatorManager.start();
+
+    const convenienceStoreManager = new ConvenienceStoreManager(product, promotion);
+    await convenienceStoreManager.start();
   }
 
   async loadProduct() {
