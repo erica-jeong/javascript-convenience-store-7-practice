@@ -62,7 +62,7 @@ class Validate {
       if (!productsName.includes(item.name)) {
         throw new Error(INVALID_ITEM_NAME);
       }
-      const totalQ = totalQuantity.find(total => total.name === item.name);
+      const totalQ = totalQuantity.find(total => total.name === item.name).quantity;
       if (item.quantity > totalQ) {
         throw new Error(INVALID_ITEM_COUNT);
       }

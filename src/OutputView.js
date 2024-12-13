@@ -13,14 +13,14 @@ class OutputView {
       let quantity = '';
       let promotion = '';
       if (product.quantity === 0) {
-        quantity = '재고없음';
+        quantity = '재고 없음';
       } else {
         quantity = `${product.quantity}개`;
       }
       if (product.promotion !== null) {
         promotion = product.promotion;
       }
-      Console.print(`- ${product.name} ${product.price.toLocaleString()} ${quantity} ${promotion}`);
+      Console.print(`- ${product.name} ${product.price.toLocaleString()}원 ${quantity} ${promotion}`);
     });
   }
 }
