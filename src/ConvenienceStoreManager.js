@@ -1,3 +1,4 @@
+import ConvenienceStore from './ConvenienceStore.js'
 import InputView from './InputView.js'
 import Item from './Item.js'
 import OutputView from './OutputView.js'
@@ -9,6 +10,7 @@ class ConvenienceStoreManager {
   #validate
   #products
   #promotions
+  #convenience
 
   constructor(product, promotion) {
     this.#inputView = new InputView();
@@ -16,13 +18,15 @@ class ConvenienceStoreManager {
     this.#validate = new Validate();
     this.#products = product;
     this.#promotions = promotion;
+    this.#convenience = new ConvenienceStore()
   }
 
   async start() {
     try {
       this.#outputView.printProductList(this.#products);
       const boughtItem = await this.#buyItem();
-      console.log(boughtItem);
+      this.#convenience.checkPromotion(this.#products, boughtItem);
+      console.log(boughtItem)
     } catch (error) {
       throw error;
     }
