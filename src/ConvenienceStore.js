@@ -8,6 +8,25 @@ class ConvenienceStore {
       }
     })
   }
+
+  promotionProcess(products, promotions, boughtItem) {
+    // 일반 상품인지 판단.
+    boughtItem.forEach(item => {
+      if (!item.hasOwnProperty('promotion')) {
+        this.generalProcess(item, products);
+      }
+    });
+  }
+
+  generalProcess(item, products) {
+    products.forEach(product => {
+      if (product.name === item.name && product.promotion === null) {
+        product.quantity -= item.quantity;
+      }
+    })
+  }
+
+
 }
 
 export default ConvenienceStore;

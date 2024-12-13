@@ -26,7 +26,9 @@ class ConvenienceStoreManager {
       this.#outputView.printProductList(this.#products);
       const boughtItem = await this.#buyItem();
       this.#convenience.checkPromotion(this.#products, boughtItem);
-      console.log(boughtItem)
+      // console.log(boughtItem)
+      this.#convenience.promotionProcess(this.#products, this.#promotions, boughtItem);
+      // console.log(this.#products)
     } catch (error) {
       throw error;
     }
@@ -39,6 +41,7 @@ class ConvenienceStoreManager {
         const items = this.saveItem(input);
         const productsName = this.getProductsName();
         const totalQuantity = this.getTotalQuantity();
+        console.log(totalQuantity)
         this.#validate.exceptItem(input, items, productsName, totalQuantity);
         return items;
       } catch (error) {
@@ -65,8 +68,9 @@ class ConvenienceStoreManager {
     const totalQuantity = [];
     this.#products.forEach(product => {
       const exist = totalQuantity.find(item => item.name === product.name);
+      // console.log(exist)
       if (exist) {
-        totalQuantity.quantity += product.quantity;
+        totalQuantity.find(element => exist.name === element.name).quantity += product.quantity;
       } else {
         totalQuantity.push({ name: product.name, quantity: product.quantity });
       }
